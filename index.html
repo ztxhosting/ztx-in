@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZTX Hosting – Elite Game Hosting</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0c0f1a;
+      color: #d6d6e0;
+    }
+
+    header {
+      background-color: #101322;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      color: #00c2ff;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #d6d6e0;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #00c2ff;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      background: #fff;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(135deg, #091028, #13294b);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #c8c8d8;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-button {
+      background: #007bff;
+      color: white;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #005fcc;
+    }
+
+    .features {
+      padding: 4rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+      color: #ffffff;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: #14192b;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #1f2a44;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #00c2ff;
+    }
+
+    .feature-card h3 {
+      color: #00c2ff;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .feature-card li {
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .feature-card li::before {
+      content: "✔";
+      position: absolute;
+      left: -1rem;
+      color: #00ffcc;
+    }
+
+    footer {
+      background-color: #0c0f1a;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    footer a {
+      margin: 0 0.7rem;
+      color: #999;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #00c2ff;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 5%;
+        background-color: #101322;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      nav a {
+        margin: 1rem;
+        display: block;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      footer a {
+        display: inline-block;
+        margin: 0.5rem 0.5rem;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="logo">ZTX Hosting</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <a href="/game-hosting">Game Hosting</a>
+      <a href="/vps">VPS</a>
+      <a href="/dedicated">Dedicated</a>
+      <a href="/home">Home</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Elite Game Server Hosting</h1>
+    <p>Ultra-low latency with 99.99% uptime guarantee and premium hardware.</p>
+    <a href="/home" class="cta-button">Get Started Now</a>
+  </section>
+
+  <section class="features">
+    <h2>Game Hosting Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Popular Games</h3>
+        <ul>
+          <li>Rust, ARK, CS:GO, Valheim</li>
+          <li>Minecraft, GMod, Squad</li>
+          <li>DayZ, Satisfactory, 7D2D</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <h3>Premium Hardware</h3>
+        <ul>
+          <li>NVMe SSD Storage</li>
+          <li>High Clock CPUs (5GHz+)</li>
+          <li>Low Latency 10Gbps Network</li>
+          <li>Free DDoS Protection</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <h3>Managed Services</h3>
+        <ul>
+          <li>Instant Setup (60 sec)</li>
+          <li>Daily Backups</li>
+          <li>24/7 Premium Support</li>
+          <li>One-Click Mod Install</li>
+        </ul>
+        <a href="/home" class="cta-button" style="margin-top: 1rem;">View Plans</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <p>&copy; 2025 ZTX Hosting. All rights reserved.</p>
+  <div>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/refund">Refund</a>
+    <a href="/about">About</a>
+    <a href="/blog">Blog</a>
+  </div>
+</footer>
