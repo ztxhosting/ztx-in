@@ -1,476 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZTX Hosting | Premium Minecraft Hosting</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #3b82f6;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #f9fafb;
-            --card-bg: #ffffff;
-            --border: #e5e7eb;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        .header h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--primary);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Plans Section */
-        .plans-section {
-            padding: 3rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-dark);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-        }
-
-        .plans-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .plan {
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .plan:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .plan-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .plan-price {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .plan-price span {
-            font-size: 0.9rem;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-
-        .plan-features {
-            padding: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .plan-features ul {
-            list-style: none;
-        }
-
-        .plan-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-name {
-            color: var(--text-light);
-        }
-
-        .feature-value {
-            font-weight: 500;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: linear-gradient(to right, var(--primary-dark), var(--primary));
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .popular-tag {
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            background: var(--secondary);
-            color: white;
-            padding: 0.25rem 2rem;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 3rem 0;
-            background-color: var(--card-bg);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--primary-dark);
-        }
-
-        .feature-desc {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 3rem 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        .cta-title {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 1rem;
-        }
-
-        .cta-desc {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            opacity: 0.9;
-        }
-
-        .btn-discord {
-            background: #5865F2;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .btn-discord:hover {
-            background: #4752C4;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .footer p {
-            opacity: 0.8;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .plans-container {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-                margin: 0 auto;
-            }
-
-            .plan {
-                width: 100%;
-            }
-
-            .header {
-                padding: 1.5rem 1rem;
-            }
-
-            .plan-price {
-                font-size: 1.8rem;
-            }
-
-            .plan-title {
-                font-size: 1.3rem;
-            }
-
-            .feature-title {
-                font-size: 1.1rem;
-            }
-
-            .feature-desc {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZTX Hosting Plans</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #111827;
+      color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1f2937;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      color: #3b82f6;
+    }
+    .plans-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+    }
+    .plan {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+    .plan:hover {
+      transform: scale(1.03);
+    }
+    .plan h2 {
+      margin-top: 0;
+      color: #facc15;
+    }
+    .plan ul {
+      list-style: none;
+      padding: 0;
+    }
+    .plan ul li {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+      color: #10b981;
+    }
+    .buy-button {
+      display: inline-block;
+      background-color: #3b82f6;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .buy-button:hover {
+      background-color: #2563eb;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <h1>ZTX HOSTING</h1>
-            <p>Premium Minecraft Server Hosting with 99.9% Uptime and Blazing Fast Performance</p>
-        </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#plans">Plans</a>
-            <a href="#features">Features</a>
-            <a href="#cta">Get Started</a>
-        </div>
-    </nav>
+  <header>
+    <h1>ZTX Minecraft Hosting Plans</h1>
+  </header>
 
-    <!-- Plans Section -->
-    <section class="plans-section" id="plans">
-        <div class="container">
-            <h2 class="section-title">Choose Your Perfect Plan</h2>
-            <div class="plans-container">
-                <!-- Starter Plan -->
-                <div class="plan">
-                    <div class="plan-title">Starter Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>4GB</span></li>
-                        <li><span>CPU:</span> <span>150%</span></li>
-                        <li><span>Storage:</span> <span>10GB SSD</span></li>
-                        <li><span>Backups:</span> <span>2 Slots</span></li>
-                        <li><span>Ports:</span> <span>2 Allocation</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Included</span></li>
-                    </ul>
-                    <div class="plan-price">₹149 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
+  <section class="plans-container">
+    <div class="plan">
+      <h2>Grass Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 2 GB</li>
+        <li><strong>CPU:</strong> 100%</li>
+        <li><strong>Disk:</strong> 5 GB</li>
+        <li><strong>Backup Slots:</strong> 1</li>
+      </ul>
+      <div class="price">₹110 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <!-- Basic Plan -->
-                <div class="plan">
-                    <div class="plan-title">Basic Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>8GB</span></li>
-                        <li><span>CPU:</span> <span>225%</span></li>
-                        <li><span>Storage:</span> <span>20GB SSD</span></li>
-                        <li><span>Backups:</span> <span>2 Slots</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Included</span></li>
-                        <li><span>Priority Support:</span> <span>Basic</span></li>
-                    </ul>
-                    <div class="plan-price">₹299 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
+    <div class="plan">
+      <h2>Dirt Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 4 GB</li>
+        <li><strong>CPU:</strong> 150%</li>
+        <li><strong>Disk:</strong> 10 GB</li>
+        <li><strong>Backup Slots:</strong> 2</li>
+      </ul>
+      <div class="price">₹220 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <!-- Standard Plan -->
-                <div class="plan">
-                    <div class="popular-tag">POPULAR</div>
-                    <div class="plan-title">Standard Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>12GB</span></li>
-                        <li><span>CPU:</span> <span>300%</span></li>
-                        <li><span>Storage:</span> <span>30GB SSD</span></li>
-                        <li><span>Backups:</span> <span>3 Slots</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Advanced</span></li>
-                        <li><span>Priority Support:</span> <span>Standard</span></li>
-                    </ul>
-                    <div class="plan-price">₹449 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
+    <div class="plan">
+      <h2>Stone Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 6 GB</li>
+        <li><strong>CPU:</strong> 160%</li>
+        <li><strong>Disk:</strong> 15 GB</li>
+        <li><strong>Backup Slots:</strong> 2</li>
+      </ul>
+      <div class="price">₹330 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <!-- Premium Plan -->
-                <div class="plan">
-                    <div class="plan-title">Premium Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>16GB</span></li>
-                        <li><span>CPU:</span> <span>375%</span></li>
-                        <li><span>Storage:</span> <span>40GB SSD</span></li>
-                        <li><span>Backups:</span> <span>4 Slots</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Advanced</span></li>
-                        <li><span>Priority Support:</span> <span>Premium</span></li>
-                    </ul>
-                    <div class="plan-price">₹599 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
+    <div class="plan">
+      <h2>Wood Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 8 GB</li>
+        <li><strong>CPU:</strong> 200%</li>
+        <li><strong>Disk:</strong> 20 GB</li>
+        <li><strong>Backup Slots:</strong> 2</li>
+      </ul>
+      <div class="price">₹440 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <!-- Advanced Plan -->
-                <div class="plan">
-                    <div class="plan-title">Advanced Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>24GB</span></li>
-                        <li><span>CPU:</span> <span>525%</span></li>
-                        <li><span>Storage:</span> <span>50GB SSD</span></li>
-                        <li><span>Backups:</span> <span>8 Slots</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Enterprise</span></li>
-                        <li><span>Priority Support:</span> <span>24/7</span></li>
-                    </ul>
-                    <div class="plan-price">₹899 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
+    <div class="plan">
+      <h2>Iron Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 12 GB</li>
+        <li><strong>CPU:</strong> 250%</li>
+        <li><strong>Disk:</strong> 30 GB</li>
+        <li><strong>Backup Slots:</strong> 3</li>
+      </ul>
+      <div class="price">₹660 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <!-- Enterprise Plan -->
-                <div class="plan">
-                    <div class="plan-title">Enterprise Plan</div>
-                    <ul class="plan-features">
-                        <li><span>RAM:</span> <span>32GB</span></li>
-                        <li><span>CPU:</span> <span>600%</span></li>
-                        <li><span>Storage:</span> <span>70GB SSD</span></li>
-                        <li><span>Backups:</span> <span>10 Slots</span></li>
-                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
-                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
-                        <li><span>DDoS Protection:</span> <span>Enterprise</span></li>
-                        <li><span>Priority Support:</span> <span>24/7 VIP</span></li>
-                    </ul>
-                    <div class="plan-price">₹1199 <span>/month</span></div>
-                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="plan">
+      <h2>Gold Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 16 GB</li>
+        <li><strong>CPU:</strong> 350%</li>
+        <li><strong>Disk:</strong> 40 GB</li>
+        <li><strong>Backup Slots:</strong> 4</li>
+      </ul>
+      <div class="price">₹880 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose ZTX Hosting?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Blazing Fast Performance</h3>
-                    <p class="feature-desc">AMD EPYC processors and NVMe SSD storage ensure your server runs at peak performance with minimal latency.</p>
-                </div>
+    <div class="plan">
+      <h2>Diamond Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 24 GB</li>
+        <li><strong>CPU:</strong> 450%</li>
+        <li><strong>Disk:</strong> 50 GB</li>
+        <li><strong>Backup Slots:</strong> 8</li>
+      </ul>
+      <div class="price">₹1320 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
 
-                <
+    <div class="plan">
+      <h2>Netherite Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 32 GB</li>
+        <li><strong>CPU:</strong> 550%</li>
+        <li><strong>Disk:</strong> 70 GB</li>
+        <li><strong>Backup Slots:</strong> 10</li>
+      </ul>
+      <div class="price">₹1760 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
+
+    <div class="plan">
+      <h2>Bedrock Plan</h2>
+      <ul>
+        <li><strong>RAM:</strong> 64 GB</li>
+        <li><strong>CPU:</strong> 950%</li>
+        <li><strong>Disk:</strong> 100 GB</li>
+        <li><strong>Backup Slots:</strong> 10</li>
+      </ul>
+      <div class="price">₹3520 / Monthly</div>
+      <a href="https://discord.gg/sDBbjb9VJ4" class="buy-button">Buy Now</a>
+    </div>
+  </section>
+</body>
+</html>
