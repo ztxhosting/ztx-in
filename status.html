@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ZTX Hosting - System Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a1929 0%, #041220 100%);
+      color: #e6f1ff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0a1f33 0%, #0c2a4d 100%);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #4da6ff;
+      border-bottom: 3px solid #1e90ff;
+      box-shadow: 0 4px 15px rgba(0, 60, 120, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00aaff, #0066ff, #00aaff);
+      animation: headerGlow 3s linear infinite;
+    }
+
+    @keyframes headerGlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .status-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .status-header h2 {
+      font-size: 32px;
+      color: #4da6ff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(77, 166, 255, 0.3);
+    }
+
+    .status-header p {
+      color: #a3c7e8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .status-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #0d2b4a 0%, #092140 100%);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 40, 80, 0.4);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(30, 144, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #1e90ff, #00bfff);
+      z-index: 2;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 80, 160, 0.5);
+      border-color: rgba(30, 144, 255, 0.4);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #4da6ff;
+      font-size: 22px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card h3 i {
+      font-size: 24px;
+    }
+
+    .status {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .online {
+      color: #1e90ff;
+      text-shadow: 0 0 8px rgba(30, 144, 255, 0.6);
+    }
+
+    .offline {
+      color: #ff6b6b;
+      text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+    }
+
+    .response-time {
+      color: #a3c7e8;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .status-details {
+      margin-top: 15px;
+      color: #a3c7e8;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .uptime-stats {
+      background: linear-gradient(145deg, #0d2b4a 0%, #092140 100%);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0, 40, 80, 0.4);
+      border: 1px solid rgba(30, 144, 255, 0.2);
+      margin-top: 20px;
+    }
+
+    .uptime-stats h3 {
+      color: #4da6ff;
+      margin-bottom: 20px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: rgba(0, 30, 60, 0.3);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(30, 144, 255, 0.1);
+    }
+
+    .stat-card .value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e90ff;
+      margin: 10px 0;
+    }
+
+    .stat-card .label {
+      color: #a3c7e8;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      background: linear-gradient(90deg, #0a1f33 0%, #0c2a4d 100%);
+      color: #a3c7e8;
+      font-size: 16px;
+      border-top: 1px solid rgba(30, 144, 255, 0.3);
+    }
+
+    .last-updated {
+      color: #4da6ff;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .status-container {
+        grid-template-columns: 1fr;
+      }
+      
+      header {
+        font-size: 24px;
+        padding: 20px 15px;
+      }
+      
+      .status-header h2 {
+        font-size: 26px;
+      }
+    }
+
+    /* Animation for status change */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .status-change {
+      animation: pulse 0.5s ease;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <i class="fas fa-server"></i> ZTX Hosting - System Status
+  </header>
+
+  <div class="container">
+    <div class="status-header">
+      <h2>Current System Status</h2>
+      <p>Real-time monitoring of our hosting infrastructure and services</p>
+    </div>
+
+    <div class="status-container">
+      <div class="card">
+        <h3><i class="fas fa-globe"></i> Main Website</h3>
+        <div class="status" id="status-main">Checking...</div>
+        <div class="response-time" id="response-main">Response time: -- ms</div>
+        <div class="status-details">Public-facing website and customer portal</div>
+      </div>
+      
+      <div class="card">
+        <h3><i class="fas fa-gamepad"></i> Game Panel</h3>
+        <div class="status" id="status-panel">Checking...</div>
+        <div class="response-time" id="response-panel">Response time: -- ms</div>
+        <div class="status-details">Game server management interface</div>
+      </div>
+      
+      <div class="card">
+        <h3><i class="fas fa-microchip"></i> Amd Epic Node</h3>
+        <div class="status" id="status-vps1">Checking...</div>
+        <div class="response-time" id="response-vps1">Response time: -- ms</div>
+        <div class="status-details">High-performance AMD EPYC server node</div>
+      </div>
+      
+      <div class="card">
+        <h3><i class="fas fa-database"></i> Ryzen 9 Server</h3>
+        <div class="status" id="status-db">Checking...</div>
+        <div class="response-time" id="response-db">Response time: -- ms</div>
+        <div class="status-details">High-performance Ryzen9 server node</div>
+      </div>
+    </div>
+
+    <div class="uptime-stats">
+      <h3><i class="fas fa-chart-line"></i> Service Uptime Statistics</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="value">99.98%</div>
+          <div class="label">30-Day Uptime</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">99.96%</div>
+          <div class="label">90-Day Uptime</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">0</div>
+          <div class="label">Current Incidents</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">2m</div>
+          <div class="label">Avg. Response Time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>&copy; 2025 ZTX Hosting. All rights reserved.</div>
+    <div class="last-updated">Last updated: <span id="update-time">Just now</span></div>
+  </footer>
+
+  <script>
+    // Define endpoints to check
+    const services = {
+      "status-main": { 
+        url: "https://ztxhosting.site", 
+        name: "Main Website",
+        responseEl: "response-main"
+      },
+      "status-panel": { 
+        url: "https://gamepanel.ztxhosting.site", 
+        name: "Game Panel",
+        responseEl: "response-panel"
+      },
+      "status-vps1": { 
+        url: "https://in-1.ztxhosting.site", 
+        name: "Amd Epic Node",
+        responseEl: "response-vps1"
+      },
+      "status-db": { 
+        url: "https://i1.ztxhosting.site", 
+        name: "Ryzen 7 Node",
+        responseEl: "response-db"
+      }
+    };
+
+    // Update timestamp
+    function updateTimestamp() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      const dateString = now.toLocaleDateString([], {month: 'short', day: 'numeric'});
+      document.getElementById('update-time').textContent = `${dateString} at ${timeString}`;
+    }
+
+    // Check status for a service
+    async function checkStatus(service, elementId) {
+      const startTime = Date.now();
+      const statusEl = document.getElementById(elementId);
+      const responseEl = document.getElementById(services[elementId].responseEl);
+      
+      try {
+        const response = await fetch(service.url, { 
+          method: 'HEAD', 
+          mode: 'no-cors',
+          cache: 'no-store'
+        });
+        
+        const endTime = Date.now();
+        const responseTime = endTime - startTime;
+        
+        statusEl.textContent = "Online";
+        statusEl.className = "status online status-change";
+        responseEl.textContent = `Response time: ${responseTime} ms`;
+        
+        // Reset animation class
+        setTimeout(() => {
+          statusEl.classList.remove('status-change');
+        }, 500);
+        
+        return true;
+      } catch (error) {
+        statusEl.textContent = "Offline";
+        statusEl.className = "status offline status-change";
+        responseEl.textContent = "Response time: -- ms";
+        
+        // Reset animation class
+        setTimeout(() => {
+          statusEl.classList.remove('status-change');
+        }, 500);
+        
+        return false;
+      }
+    }
+
+    // Check status for all services
+    async function checkAllServices() {
+      updateTimestamp();
+      
+      for (const [id, service] of Object.entries(services)) {
+        await checkStatus(service, id);
+        // Add a small delay between checks
+        await new Promise(resolve => setTimeout(resolve, 300));
+      }
+    }
+
+    // Initial check
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAllServices();
+      
+      // Auto-refresh every 60 seconds
+      setInterval(checkAllServices, 60000);
+    });
+  </script>
+</body>
+</html>
