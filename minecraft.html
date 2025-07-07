@@ -1,423 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>ZTX Hosting | Premium Minecraft Servers</title>
-  <style>
-    :root {
-      --primary-blue: #0066ff;
-      --dark-blue: #003366;
-      --electric-blue: #00aaff;
-      --neon-blue: #00f2ff;
-      --bg-dark: #0a0a1a;
-      --bg-darker: #050510;
-      --wood-color: #8B4513;
-      --stone-color: #808080;
-      --iron-color: #D3D3D3;
-      --gold-color: #FFD700;
-      --diamond-color: #b9f2ff;
-      --netherite-color: #4A4A4A;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZTX Hosting | Premium Minecraft Hosting</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #f9fafb;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+        }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--bg-darker), var(--bg-dark));
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('https://fonts.cdnfonts.com/css/minecraft-4') format('woff2');
-    }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .header {
-      background: rgba(0, 20, 40, 0.8);
-      padding: 1.5rem 1rem;
-      text-align: center;
-      border-bottom: 2px solid var(--electric-blue);
-      position: relative;
-    }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .logo {
-      font-family: 'Minecraft', sans-serif;
-      font-size: clamp(1.8rem, 5vw, 2.2rem);
-      font-weight: 800;
-      background: linear-gradient(to right, var(--electric-blue), var(--neon-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
 
-    .tagline {
-      color: #aaccff;
-      font-size: clamp(0.9rem, 3vw, 1rem);
-      margin-bottom: 0.5rem;
-    }
+        .header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
 
-    .glow {
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-    }
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
 
-    .pricing-container {
-      max-width: 1200px;
-      margin: 1.5rem auto;
-      padding: 0 1rem;
-    }
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            padding: 1rem;
+            text-align: center;
+        }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-    .plan-card {
-      background: linear-gradient(145deg, #0f0f2a, #1a1a3a);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 2px solid #1e3a5a;
-      box-shadow: 0 5px 15px rgba(0, 50, 100, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-    }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-    .plan-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 100, 255, 0.4);
-      border-color: var(--electric-blue);
-    }
+        /* Plans Section */
+        .plans-section {
+            padding: 3rem 0;
+        }
 
-    .plan-card.popular::before {
-      content: "BEST VALUE";
-      position: absolute;
-      top: 12px;
-      right: -28px;
-      background: var(--primary-blue);
-      color: white;
-      padding: 4px 28px;
-      font-size: 0.7rem;
-      font-weight: bold;
-      transform: rotate(45deg);
-      box-shadow: 0 0 10px rgba(0, 102, 255, 0.7);
-      font-family: 'Minecraft', sans-serif;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
 
-    .plan-header {
-      padding: 1.2rem 1rem;
-      background: rgba(0, 40, 80, 0.3);
-      border-bottom: 1px solid #1e3a5a;
-      text-align: center;
-    }
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
 
-    .plan-name {
-      font-family: 'Minecraft', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      text-transform: uppercase;
-    }
+        .plan {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* Minecraft-style tier colors */
-    .plan-name.wood {
-      color: var(--wood-color);
-      text-shadow: 2px 2px 0 #5D2906;
-    }
-    .plan-name.stone {
-      color: var(--stone-color);
-      text-shadow: 2px 2px 0 #4A4A4A;
-    }
-    .plan-name.iron {
-      color: var(--iron-color);
-      text-shadow: 2px 2px 0 #8E8E8E;
-    }
-    .plan-name.gold {
-      color: var(--gold-color);
-      text-shadow: 2px 2px 0 #B8860B;
-    }
-    .plan-name.diamond {
-      color: var(--diamond-color);
-      text-shadow: 2px 2px 0 #1E90FF;
-    }
-    .plan-name.netherite {
-      color: #FF5555;
-      text-shadow: 2px 2px 0 #8B0000;
-    }
+        .plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .plan-ram {
-      font-family: 'Minecraft', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(to right, var(--electric-blue), var(--neon-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin: 0.3rem 0;
-      text-transform: uppercase;
-    }
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
 
-    .plan-price {
-      font-family: 'Minecraft', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: white;
-    }
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+        }
 
-    .plan-price span {
-      font-size: 0.9rem;
-      color: #aaccff;
-    }
+        .plan-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
 
-    .plan-features {
-      padding: 1rem;
-    }
+        .plan-features {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
 
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+        .plan-features ul {
+            list-style: none;
+        }
 
-    .feature-list li {
-      padding: 0.6rem 0;
-      border-bottom: 1px dashed #1e3a5a;
-      display: flex;
-      align-items: center;
-      font-size: 0.95rem;
-    }
+        .plan-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
 
-    .feature-list li:last-child {
-      border-bottom: none;
-    }
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
 
-    .feature-icon {
-      color: var(--electric-blue);
-      margin-right: 10px;
-      font-size: 1rem;
-      min-width: 16px;
-    }
+        .feature-name {
+            color: var(--text-light);
+        }
 
-    .plan-cta {
-      padding: 0 1rem 1.2rem;
-      text-align: center;
-    }
+        .feature-value {
+            font-weight: 500;
+        }
 
-    .cta-button {
-      display: inline-block;
-      padding: 12px 20px;
-      background: linear-gradient(to right, var(--primary-blue), var(--electric-blue));
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      font-size: 1rem;
-      touch-action: manipulation;
-      font-family: 'Minecraft', sans-serif;
-      text-transform: uppercase;
-    }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+        }
 
-    .cta-button:hover, .cta-button:focus {
-      background: linear-gradient(to right, var(--electric-blue), var(--neon-blue));
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
-      outline: none;
-    }
+        .btn:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    @media (max-width: 600px) {
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .plan-card.popular::before {
-        right: -25px;
-        padding: 3px 25px;
-        font-size: 0.6rem;
-      }
-      
-      .plan-header {
-        padding: 1rem;
-      }
-      
-      .plan-ram {
-        font-size: 1.6rem;
-      }
-      
-      .plan-price {
-        font-size: 1.4rem;
-      }
-      
-      .feature-list li {
-        font-size: 0.9rem;
-        padding: 0.5rem 0;
-      }
-    }
+        .popular-tag {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    @media (hover: none) {
-      .plan-card:hover {
-        transform: none;
-      }
-    }
-  </style>
+        /* Features Section */
+        .features-section {
+            padding: 3rem 0;
+            background-color: var(--card-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary-dark);
+        }
+
+        .feature-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-desc {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-discord {
+            background: #5865F2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-discord:hover {
+            background: #4752C4;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .plans-container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .plan {
+                width: 100%;
+            }
+
+            .header {
+                padding: 1.5rem 1rem;
+            }
+
+            .plan-price {
+                font-size: 1.8rem;
+            }
+
+            .plan-title {
+                font-size: 1.3rem;
+            }
+
+            .feature-title {
+                font-size: 1.1rem;
+            }
+
+            .feature-desc {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="header">
-    <div class="logo glow">ZTX HOSTING</div>
-    <div class="tagline">Premium Minecraft Server Solutions</div>
-  </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>ZTX HOSTING</h1>
+            <p>Premium Minecraft Server Hosting with 99.9% Uptime and Blazing Fast Performance</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#plans">Plans</a>
+            <a href="#features">Features</a>
+            <a href="#cta">Get Started</a>
+        </div>
+    </nav>
 
-  <div class="pricing-container">
-    <div class="pricing-grid">
-      <!-- WOOD Tier -->
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name wood">WOOD TIER</div>
-          <div class="plan-ram">2GB</div>
-          <div class="plan-price">100/INR<span>/mo</span></div>
-        </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 100% CPU Core</li>
-            <li><span class="feature-icon">✓</span> 5GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Unlimited Player Slots</li>
-            <li><span class="feature-icon">✓</span> Basic DDoS Protection</li>
-            <li><span class="feature-icon">✓</span> 24/7 Monitoring</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Craft Now</a>
-        </div>
-      </div>
+    <!-- Plans Section -->
+    <section class="plans-section" id="plans">
+        <div class="container">
+            <h2 class="section-title">Choose Your Perfect Plan</h2>
+            <div class="plans-container">
+                <!-- Starter Plan -->
+                <div class="plan">
+                    <div class="plan-title">Starter Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>4GB</span></li>
+                        <li><span>CPU:</span> <span>150%</span></li>
+                        <li><span>Storage:</span> <span>10GB SSD</span></li>
+                        <li><span>Backups:</span> <span>2 Slots</span></li>
+                        <li><span>Ports:</span> <span>2 Allocation</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Included</span></li>
+                    </ul>
+                    <div class="plan-price">₹149 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
 
-      <!-- STONE Tier -->
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name stone">STONE TIER</div>
-          <div class="plan-ram">4GB</div>
-          <div class="plan-price">200/INR<span>/mo</span></div>
-        </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 150% CPU Cores</li>
-            <li><span class="feature-icon">✓</span> 10GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Unlimited Player Slots</li>
-            <li><span class="feature-icon">✓</span> Advanced DDoS Protection</li>
-            <li><span class="feature-icon">✓</span> Free Subdomain</li>
-            <li><span class="feature-icon">✓</span> Automated Backups</li>
-            <li><span class="feature-icon">✓</span> Priority Support</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Mine Now</a>
-        </div>
-      </div>
+                <!-- Basic Plan -->
+                <div class="plan">
+                    <div class="plan-title">Basic Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>8GB</span></li>
+                        <li><span>CPU:</span> <span>225%</span></li>
+                        <li><span>Storage:</span> <span>20GB SSD</span></li>
+                        <li><span>Backups:</span> <span>2 Slots</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Included</span></li>
+                        <li><span>Priority Support:</span> <span>Basic</span></li>
+                    </ul>
+                    <div class="plan-price">₹299 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
 
-      <!-- IRON Tier -->
-      <div class="plan-card popular">
-        <div class="plan-header">
-          <div class="plan-name iron">IRON TIER</div>
-          <div class="plan-ram">8GB</div>
-          <div class="plan-price">400/INR<span>/mo</span></div>
-        </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 200% CPU Cores</li>
-            <li><span class="feature-icon">✓</span> 20GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Unlimited Player Slots</li>
-            <li><span class="feature-icon">✓</span> Java & Bedrock Compatible</li>
-            <li><span class="feature-icon">✓</span> 1-Click Modpack Installer</li>
-            <li><span class="feature-icon">✓</span> Hourly Backups</li>
-            <li><span class="feature-icon">✓</span> Free Subdomain & Dedicated IP</li>
-            <li><span class="feature-icon">✓</span> VIP Support Access</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Smelt Now</a>
-        </div>
-      </div>
+                <!-- Standard Plan -->
+                <div class="plan">
+                    <div class="popular-tag">POPULAR</div>
+                    <div class="plan-title">Standard Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>12GB</span></li>
+                        <li><span>CPU:</span> <span>300%</span></li>
+                        <li><span>Storage:</span> <span>30GB SSD</span></li>
+                        <li><span>Backups:</span> <span>3 Slots</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Advanced</span></li>
+                        <li><span>Priority Support:</span> <span>Standard</span></li>
+                    </ul>
+                    <div class="plan-price">₹449 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
 
-      <!-- GOLD Tier -->
-      <div class="plan-card popular">
-        <div class="plan-header">
-          <div class="plan-name gold">GOLD TIER</div>
-          <div class="plan-ram">16GB</div>
-          <div class="plan-price">600/INR<span>/mo</span></div>
-        </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 300% CPU Cores</li>
-            <li><span class="feature-icon">✓</span> 45GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Unlimited Player Slots</li>
-            <li><span class="feature-icon">✓</span> Real-time Backups</li>
-            <li><span class="feature-icon">✓</span> Custom Modpacks</li>
-            <li><span class="feature-icon">✓</span> Dedicated IP</li>
-            <li><span class="feature-icon">✓</span> Server Analytics</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Enchant Now</a>
-        </div>
-      </div>
+                <!-- Premium Plan -->
+                <div class="plan">
+                    <div class="plan-title">Premium Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>16GB</span></li>
+                        <li><span>CPU:</span> <span>375%</span></li>
+                        <li><span>Storage:</span> <span>40GB SSD</span></li>
+                        <li><span>Backups:</span> <span>4 Slots</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Advanced</span></li>
+                        <li><span>Priority Support:</span> <span>Premium</span></li>
+                    </ul>
+                    <div class="plan-price">₹599 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
 
-      <!-- DIAMOND Tier -->
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name diamond">DIAMOND TIER</div>
-          <div class="plan-ram">24GB</div>
-          <div class="plan-price">1240/INR<span>/mo</span></div>
-        </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 500% CPU Cores</li>
-            <li><span class="feature-icon">✓</span> 60GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Unlimited Player Slots</li>
-            <li><span class="feature-icon">✓</span> Modpack & Plugin Support</li>
-            <li><span class="feature-icon">✓</span> Real-time Backups</li>
-            <li><span class="feature-icon">✓</span> Free Dedicated IP</li>
-            <li><span class="feature-icon">✓</span> 24/7 Priority Support</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Forge Now</a>
-        </div>
-      </div>
+                <!-- Advanced Plan -->
+                <div class="plan">
+                    <div class="plan-title">Advanced Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>24GB</span></li>
+                        <li><span>CPU:</span> <span>525%</span></li>
+                        <li><span>Storage:</span> <span>50GB SSD</span></li>
+                        <li><span>Backups:</span> <span>8 Slots</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Enterprise</span></li>
+                        <li><span>Priority Support:</span> <span>24/7</span></li>
+                    </ul>
+                    <div class="plan-price">₹899 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
 
-      <!-- NETHERITE Tier -->
-      <div class="plan-card popular">
-        <div class="plan-header">
-          <div class="plan-name netherite">NETHERITE TIER</div>
-          <div class="plan-ram">32GB</div>
-          <div class="plan-price">1700/INR<span>/mo</span></div>
+                <!-- Enterprise Plan -->
+                <div class="plan">
+                    <div class="plan-title">Enterprise Plan</div>
+                    <ul class="plan-features">
+                        <li><span>RAM:</span> <span>32GB</span></li>
+                        <li><span>CPU:</span> <span>600%</span></li>
+                        <li><span>Storage:</span> <span>70GB SSD</span></li>
+                        <li><span>Backups:</span> <span>10 Slots</span></li>
+                        <li><span>Processor:</span> <span>AMD EPYC</span></li>
+                        <li><span>Location:</span> <span>India 🇮🇳</span></li>
+                        <li><span>DDoS Protection:</span> <span>Enterprise</span></li>
+                        <li><span>Priority Support:</span> <span>24/7 VIP</span></li>
+                    </ul>
+                    <div class="plan-price">₹1199 <span>/month</span></div>
+                    <a href="https://discord.gg/sDBbjb9VJ4" class="btn" target="_blank">Get Started</a>
+                </div>
+            </div>
         </div>
-        <div class="plan-features">
-          <ul class="feature-list">
-            <li><span class="feature-icon">✓</span> 800% CPU Cores</li>
-            <li><span class="feature-icon">✓</span> 100GB NVMe SSD</li>
-            <li><span class="feature-icon">✓</span> Crossplay & Bungee Ready</li>
-            <li><span class="feature-icon">✓</span> Hourly Snapshots</li>
-            <li><span class="feature-icon">✓</span> Max Tier DDoS Protection</li>
-            <li><span class="feature-icon">✓</span> Free Dedicated IP</li>
-            <li><span class="feature-icon">✓</span> Premium 24/7 Support</li>
-          </ul>
-        </div>
-        <div class="plan-cta">
-          <a href="https://upi.ztxhosting.site/" class="cta-button">Upgrade Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose ZTX Hosting?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Blazing Fast Performance</h3>
+                    <p class="feature-desc">AMD EPYC processors and NVMe SSD storage ensure your server runs at peak performance with minimal latency.</p>
+                </div>
+
+                <
