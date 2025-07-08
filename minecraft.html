@@ -7,19 +7,19 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #111827;
-      color: #f9fafb;
+      background: #000000; /* Black background */
+      color: #ffffff; /* White text */
       margin: 0;
       padding: 0;
     }
     header {
-      background-color: #1f2937;
+      background-color: #000000; /* Black header */
       padding: 20px;
       text-align: center;
     }
     header h1 {
       margin: 0;
-      color: #3b82f6;
+      color: #ffffff; /* White heading */
     }
     .plans-container {
       display: grid;
@@ -28,18 +28,19 @@
       padding: 40px 20px;
     }
     .plan {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: #1a1a1a; /* Dark gray plan background */
+      border: 1px solid #ffffff; /* White border */
       border-radius: 12px;
       padding: 20px;
       transition: transform 0.2s ease;
     }
     .plan:hover {
       transform: scale(1.03);
+      border-color: #cccccc; /* Light gray border on hover */
     }
     .plan h2 {
       margin-top: 0;
-      color: #facc15;
+      color: #ffffff; /* White heading */
     }
     .plan ul {
       list-style: none;
@@ -48,17 +49,18 @@
     .plan ul li {
       margin: 10px 0;
       font-size: 14px;
+      color: #ffffff; /* White text */
     }
     .price {
       font-size: 18px;
       font-weight: bold;
       margin-top: 15px;
-      color: #10b981;
+      color: #ffffff; /* White price text */
     }
     .buy-button {
       display: inline-block;
-      background-color: #3b82f6;
-      color: white;
+      background-color: #ffffff; /* White button background */
+      color: #000000; /* Black button text */
       padding: 10px 15px;
       border-radius: 5px;
       text-decoration: none;
@@ -66,7 +68,7 @@
       text-align: center;
     }
     .buy-button:hover {
-      background-color: #2563eb;
+      background-color: #cccccc; /* Light gray on hover */
     }
     @media (max-width: 600px) {
       header h1 {
