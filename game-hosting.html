@@ -10,92 +10,80 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff; /* White background */
-      color: #000000; /* Black text */
+      background-color: #000000;
+      color: #ffffff;
     }
-    header {
-      background: #ffffff; /* White header */
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #000000; /* Black border */
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-      color: #000000; /* Black heading */
-    }
-    header p {
-      color: #333333; /* Dark gray for better contrast */
-      margin-top: 5px;
-    }
+
     .game-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 30px 20px;
       gap: 30px;
-      background-color: #ffffff; /* White background */
     }
+
     .game-card {
-      background: #000000; /* Black card background */
-      color: #ffffff; /* White text */
+      background: #111111;
+      color: #ffffff;
       border-radius: 12px;
       padding: 20px;
       width: 300px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); /* Dark shadow */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .game-card:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Light shadow on hover */
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
+
     .game-card img {
       width: 100%;
       border-radius: 8px;
       margin-bottom: 15px;
     }
+
     .game-card h2 {
       font-size: 1.5em;
-      color: #ffffff; /* White heading */
       margin-bottom: 10px;
     }
+
     .game-card p {
       font-size: 0.95em;
       line-height: 1.5;
       margin-bottom: 20px;
-      color: #ffffff; /* White text */
+      color: #dddddd;
     }
+
     .buttons a {
       display: block;
       text-align: center;
-      text-decoration: none;
-      padding: 10px;
-      background: #000000; /* Black button background */
-      border-radius: 8px;
-      color: #ffffff; /* White text */
+      padding: 12px;
+      background: #ffffff;
+      color: #000000;
       font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      transition: all 0.3s;
     }
+
     .buttons a:hover {
-      background: #333333; /* Dark gray on hover */
-      color: #ffffff; /* White text */
+      background: #dddddd;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
     }
+
     footer {
-      background: #ffffff; /* White footer */
-      color: #333333; /* Dark gray for footer text */
+      background: #000000;
+      color: #888888;
       text-align: center;
       padding: 20px;
       font-size: 0.9em;
-      border-top: 2px solid #000000; /* Black border */
+      border-top: 1px solid #333;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>ZTX Game Server Hosting</h1>
-    <p>Affordable. Fast. Lag-Free. Secure.</p>
-  </header>
 
   <section class="game-container">
     <!-- Minecraft -->
